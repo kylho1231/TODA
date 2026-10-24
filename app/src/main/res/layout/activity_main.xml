@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_canvas">
+
+    <!-- Top Hero AppBar with Gradient & Municipal Badge -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_gradient_header"
+        app:elevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="18dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_badge_ordinance">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="TODA Emblem"
+                        android:src="@drawable/ic_tricycle_badge" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="San Jose de Buenavista"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Official TODA Fare Matrix &amp; Guide"
+                        android:textColor="#93C5FD"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif-medium" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Ordinance Verified Pill -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_badge_ordinance"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="5dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:contentDescription="Verified"
+                    android:src="@drawable/ic_verified" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Sangguniang Bayan MO 2024-01 &amp; 2022-18"
+                    android:textColor="@color/badge_ordinance_text"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content Pages Container -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="64dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- ================= PAGE 1: FARE CALCULATOR ================= -->
+        <ScrollView
+            android:id="@+id/layoutCalculator"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Connected Route Picker Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/card_surface"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/divider"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="18dp">
+
+                        <!-- Route Visual Trail (Dots & Line) -->
+                        <View
+                            android:id="@+id/dotOrigin"
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_marginTop="26dp"
+                            android:background="@drawable/bg_badge_discount"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/routeConnectorLine"
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:background="#94A3B8"
+                            app:layout_constraintBottom_toTopOf="@+id/dotDest"
+                            app:layout_constraintEnd_toEndOf="@+id/dotOrigin"
+                            app:layout_constraintStart_toStartOf="@+id/dotOrigin"
+                            app:layout_constraintTop_toBottomOf="@+id/dotOrigin" />
+
+                        <View
+                            android:id="@+id/dotDest"
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_marginBottom="26dp"
+                            android:background="@drawable/bg_badge_ordinance"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <!-- Origin Dropdown -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilOrigin"
+                            style="@style/Widget.App.ExposedDropdown"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginEnd="8dp"
+                            android:hint="Pick-up Location (Origin)"
+                            app:layout_constraintEnd_toStartOf="@+id/btnSwapLocations"
+                            app:layout_constraintStart_toEndOf="@+id/dotOrigin"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:startIconDrawable="@drawable/ic_my_location"
+                            app:startIconTint="@color/accent_green">
+
+                            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                                android:id="@+id/actvOrigin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="none"
+                                android:textSize="14sp"
+                                android:fontFamily="sans-serif-medium" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Circular Floating Swap Button -->
+                        <ImageButton
+                            android:id="@+id/btnSwapLocations"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_round_swap_button"
+                            android:contentDescription="Swap Origin and Destination"
+                            android:elevation="3dp"
+                            android:src="@drawable/ic_swap_vert"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/primary_brand" />
+
+                        <!-- Destination Dropdown -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilDestination"
+                            style="@style/Widget.App.ExposedDropdown"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginEnd="8dp"
+                            android:hint="Drop-off Location (Destination)"
+                            app:layout_constraintEnd_toStartOf="@+id/btnSwapLocations"
+                            app:layout_constraintStart_toEndOf="@+id/dotDest"
+                            app:layout_constraintTop_toBottomOf="@+id/tilOrigin"
+                            app:startIconDrawable="@drawable/ic_location_on"
+                            app:startIconTint="@color/accent_red">
+
+                            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                                android:id="@+id/actvDestination"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="none"
+                                android:textSize="14sp"
+                                android:fontFamily="sans-serif-medium" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Passenger Category Section with Chips -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="18dp"
+                    android:text="PASSENGER CATEGORY &amp; STATUTORY DISCOUNT"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-black"
+                    android:letterSpacing="0.05" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupPassenger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRegular"
+                        style="@style/Widget.App.ChoiceChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Regular"
+                        app:chipIcon="@drawable/ic_person" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipStudent"
+                        style="@style/Widget.App.ChoiceChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Student (20% Off)"
+                        app:chipIcon="@drawable/ic_school" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipSenior"
+                        style="@style/Widget.App.ChoiceChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Senior (20% Off)"
+                        app:chipIcon="@drawable/ic_elderly" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipPwd"
+                        style="@style/Widget.App.ChoiceChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PWD (20% Off)"
+                        app:chipIcon="@drawable/ic_accessible" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <!-- Passenger Count & Special Trip Controls -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <!-- Passenger Stepper Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/card_surface"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="1.5dp"
+                        app:strokeColor="@color/divider"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Passenger Count"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnPassengerMinus"
+                                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                    android:layout_width="38dp"
+                                    android:layout_height="38dp"
+                                    android:insetLeft="0dp"
+                                    android:insetTop="0dp"
+                                    android:insetRight="0dp"
+                                    android:insetBottom="0dp"
+                                    android:padding="0dp"
+                                    android:text="-"
+                                    android:textColor="@color/primary_brand"
+                                    android:textSize="20sp"
+                                    app:cornerRadius="19dp"
+                                    app:strokeColor="@color/divider" />
+
+                                <TextView
+                                    android:id="@+id/tvPassengerCount"
+                                    android:layout_width="44dp"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="1"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="20sp"
+                                    android:fontFamily="sans-serif-black"
+                                    android:textStyle="bold" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnPassengerPlus"
+                                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                    android:layout_width="38dp"
+                                    android:layout_height="38dp"
+                                    android:insetLeft="0dp"
+                                    android:insetTop="0dp"
+                                    android:insetRight="0dp"
+                                    android:insetBottom="0dp"
+                                    android:padding="0dp"
+                                    android:text="+"
+                                    android:textColor="@color/primary_brand"
+                                    android:textSize="20sp"
+                                    app:cornerRadius="19dp"
+                                    app:strokeColor="@color/divider" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Special Trip (Pakyaw) Toggle Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardSpecialTrip"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1.2"
+                        app:cardBackgroundColor="@color/card_surface"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="1.5dp"
+                        app:strokeColor="@color/divider"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Special Trip"
+                                    android:textColor="@color/text_primary"
+                                    android:textSize="13sp"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:textStyle="bold" />
+
+                                <com.google.android.material.switchmaterial.SwitchMaterial
+                                    android:id="@+id/switchSpecialTrip"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Pakyaw / Solo ride (3 seats reserved)"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <!-- ================= DIGITAL TRANSIT TICKET (RESULT CARD) ================= -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardResultTicket"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="@color/card_surface"
+                    app:cardCornerRadius="22dp"
+                    app:cardElevation="4dp"
+                    app:strokeColor="@color/primary_brand"
+                    app:strokeWidth="1.5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <!-- Ticket Header -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="LEGAL REGULATED FARE"
+                                android:textColor="@color/text_muted"
+                                android:textSize="11sp"
+                                android:fontFamily="sans-serif-black"
+                                android:letterSpacing="0.08" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_badge_discount"
+                                android:gravity="center_vertical"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="3dp">
+
+                                <ImageView
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:contentDescription="Verified Tag"
+                                    android:src="@drawable/ic_verified" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:text="OFFICIAL TARIFF"
+                                    android:textColor="@color/accent_green_text"
+                                    android:textSize="10sp"
+                                    android:fontFamily="sans-serif-black" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Main Giant Price -->
+                        <TextView
+                            android:id="@+id/tvTotalFare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:textColor="@color/primary"
+                            android:textSize="40sp"
+                            android:fontFamily="sans-serif-black"
+                            android:textStyle="bold"
+                            tools:text="₱15.00" />
+
+                        <!-- Breakdown subtitle -->
+                        <TextView
+                            android:id="@+id/tvFareBreakdown"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/accent_green"
+                            android:textSize="13sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="bold"
+                            tools:text="Standard Regular: ₱15.00 • 1 Passenger" />
+
+                        <TextView
+                            android:id="@+id/tvDistanceDisplay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/text_muted"
+                            android:textSize="12sp"
+                            tools:text="Estimated Distance: 1.0 km" />
+
+                        <!-- Ticket Perforated Dashed Divider -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginVertical="16dp"
+                            android:background="@drawable/bg_ticket_divider" />
+
+                        <!-- Serving TODA association -->
+                        <TextView
+                            android:id="@+id/tvServingToda"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_light"
+                            android:textSize="13sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="bold"
+                            tools:text="Serving TODA: San Jose de Buenavista TODA - Route 1" />
+
+                        <!-- Ordinance Citation -->
+                        <TextView
+                            android:id="@+id/tvOrdinanceRef"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:background="@drawable/bg_badge_ordinance"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
+                            android:textColor="@color/badge_ordinance_text"
+                            android:textSize="11sp"
+                            android:fontFamily="sans-serif-medium"
+                            tools:text="Governed by Municipal Ordinance No. 2022-18" />
+
+                        <TextView
+                            android:id="@+id/tvFareNotes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="11sp"
+                            android:lineSpacingExtra="2dp"
+                            tools:text="Mandatory 20% discount applied under Philippine Law (RA 9994/RA 7277)." />
+
+                        <!-- Report Button -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnReportOvercharging"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Report Overcharging or Driver Issue"
+                            android:textAllCaps="false"
+                            android:textColor="@color/accent_red"
+                            android:textSize="13sp"
+                            android:fontFamily="sans-serif-medium"
+                            app:cornerRadius="12dp"
+                            app:icon="@drawable/ic_warning"
+                            app:iconTint="@color/accent_red"
+                            app:strokeColor="@color/accent_red_border" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ================= PAGE 2: OFFICIAL ROUTE MATRIX ================= -->
+        <LinearLayout
+            android:id="@+id/layoutMatrix"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- Search Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/card_surface"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/divider"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="14dp">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:contentDescription="Search Icon"
+                        android:src="@drawable/ic_search"
+                        app:tint="@color/text_muted" />
+
+                    <EditText
+                        android:id="@+id/etSearchMatrix"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:hint="Search barangay, landmark, or TODA..."
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_muted"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tvMatrixHeaderHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="6dp"
+                android:text="Tap any route below to calculate fare"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRoutes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="24dp"
+                tools:listitem="@layout/item_route_fare" />
+
+        </LinearLayout>
+
+        <!-- ================= PAGE 3: HOTLINES & HELP ================= -->
+        <ScrollView
+            android:id="@+id/layoutHelp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="San Jose Transit Hotlines"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Direct municipal hotlines for fare complaints, lost items, and emergency assistance."
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp" />
+
+                <!-- Traffic Management Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    app:cardBackgroundColor="@color/card_surface"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/divider"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="18dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Traffic Management Office (TMO)"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="San Jose Municipal Hall • Enforces tricycle fare tariffs, terminal queues, and driver sanctions."
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnCallTmo"
+                            style="@style/Widget.MaterialComponents.Button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:backgroundTint="@color/primary_brand"
+                            android:text="Call TMO: (036) 540-8000"
+                            android:textAllCaps="false"
+                            android:fontFamily="sans-serif-medium"
+                            app:cornerRadius="12dp"
+                            app:icon="@drawable/ic_phone" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- San Jose PNP Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="@color/card_surface"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/divider"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="18dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="San Jose Municipal Police Station (PNP)"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Emergency response, theft, vehicular incidents, and public passenger safety."
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnCallPnp"
+                            style="@style/Widget.MaterialComponents.Button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:backgroundTint="@color/primary"
+                            android:text="Call Police: 0998-598-6228"
+                            android:textAllCaps="false"
+                            android:fontFamily="sans-serif-medium"
+                            app:cornerRadius="12dp"
+                            app:icon="@drawable/ic_phone" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Commuter Rights Legal Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    app:cardBackgroundColor="#F0FDF4"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/accent_green_border"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="18dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:contentDescription="Security"
+                                android:src="@drawable/ic_security"
+                                app:tint="@color/accent_green_text" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="Commuter Rights &amp; Protections"
+                                android:textColor="@color/accent_green_text"
+                                android:textSize="15sp"
+                                android:fontFamily="sans-serif-medium"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:lineSpacingExtra="4dp"
+                            android:text="1. 20% Statutory Discount: Students, Senior Citizens (60+), and PWDs are entitled to 20% discount on all routes upon showing valid ID.\n\n2. Tariff Display: All tricycles must display the official fare matrix and body number visibly inside the sidecar.\n\n3. Overcharging Penalties: Municipal Ordinance imposes fines, impounding, or franchise cancellation for charging rates above the approved matrix."
+                            android:textColor="#14532D"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
+
+    <!-- Modern Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom"
+        app:menu="@menu/menu_bottom_navigation" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

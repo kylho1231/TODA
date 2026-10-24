@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>San Jose TODA — Official Municipal Fare Guide &amp; Matrix</title>
+  <meta name="description" content="Official Municipal Tricycle Fare Calculator & Matrix for San Jose de Buenavista, Antique (MO 2022-18 & 2024-01). 20% statutory discounts, pakyaw rates, and TMO hotline.">
+  <meta name="theme-color" content="#1e3523">
+  <link rel="icon" type="image/webp" href="toda-logo.webp">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-frame">
+    <!-- Top Header -->
+    <header class="top-app-bar">
+      <div class="app-branding">
+        <img src="toda-logo.webp" alt="San Jose TODA Emblem">
+        <div class="app-titles">
+          <h1>San Jose TODA</h1>
+          <p>Official Municipal Fare Guide &amp; Matrix</p>
+        </div>
+      </div>
+      <span class="ordinance-pill">MO 2022-18</span>
+    </header>
+
+    <!-- Download APK Banner -->
+    <div class="apk-banner">
+      <div class="apk-info">
+        <strong><span>📲</span> Android App Available</strong>
+        <small>Download native APK (v1.0.0 · Target API 37)</small>
+      </div>
+      <a href="apk/SanJoseTODA-v1.0.0.apk" class="btn-download-apk" download="SanJoseTODA-v1.0.0.apk">
+        <span>Download APK</span> <span>↓</span>
+      </a>
+    </div>
+
+    <!-- Navigation Tab Bar -->
+    <nav class="tab-bar" aria-label="Main navigation">
+      <button class="tab-btn active" data-tab="tab-calculator">
+        <span>🧮</span> Calculator
+      </button>
+      <button class="tab-btn" data-tab="tab-matrix">
+        <span>📋</span> Official Matrix
+      </button>
+      <button class="tab-btn" data-tab="tab-help">
+        <span>📞</span> Hotlines &amp; Help
+      </button>
+    </nav>
+
+    <!-- Tab 1: Fare Calculator -->
+    <main class="tab-content">
+      <section class="tab-panel active" id="tab-calculator">
+        <div class="field-group">
+          <label class="field-label" for="select-origin">Origin (Pick-up Point)</label>
+          <div class="select-wrap">
+            <select id="select-origin"></select>
+            <span class="select-arrow" aria-hidden="true">▼</span>
+          </div>
+        </div>
+
+        <div class="swap-btn-row">
+          <button type="button" class="btn-swap" id="btn-swap">
+            <span>⇅ Swap Pick-up &amp; Drop-off</span>
+          </button>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="select-destination">Destination (Drop-off Point)</label>
+          <div class="select-wrap">
+            <select id="select-destination"></select>
+            <span class="select-arrow" aria-hidden="true">▼</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Passenger Category (20% Statutory Discount)</label>
+          <div class="chips-row">
+            <button type="button" class="chip-btn active" data-type="regular">
+              <span>Regular</span>
+              <small>Standard commuter rate</small>
+            </button>
+            <button type="button" class="chip-btn" data-type="student">
+              <span>Student</span>
+              <small>20% off with valid ID</small>
+            </button>
+            <button type="button" class="chip-btn" data-type="senior">
+              <span>Senior Citizen</span>
+              <small>20% off (60+ years)</small>
+            </button>
+            <button type="button" class="chip-btn" data-type="pwd">
+              <span>PWD</span>
+              <small>20% off with PWD ID</small>
+            </button>
+          </div>
+        </div>
+
+        <div class="controls-row">
+          <div class="field-group">
+            <label class="field-label">Passengers</label>
+            <div class="stepper-box">
+              <button type="button" class="stepper-btn" id="stepper-minus" aria-label="Decrease passenger count">−</button>
+              <span class="stepper-num" id="stepper-num">1</span>
+              <button type="button" class="stepper-btn" id="stepper-plus" aria-label="Increase passenger count">+</button>
+            </div>
+          </div>
+
+          <label class="toggle-card">
+            <input type="checkbox" id="check-special">
+            <div class="toggle-text">
+              <strong>Special Trip (Pakyaw)</strong>
+              <small>Exclusive solo ride / charter (3x rate)</small>
+            </div>
+          </label>
+        </div>
+
+        <!-- Calculated Result Card -->
+        <div class="fare-result-card">
+          <div class="fare-header">
+            <span>Regulated Fare</span>
+            <span id="calculated-distance" style="font-weight: 700; color: #a3d9a5;">2.8 km</span>
+          </div>
+          <div class="fare-amount" id="calculated-fare">₱20.00</div>
+          
+          <div class="fare-breakdown">
+            <div class="fare-row">
+              <span>Route Association:</span>
+              <strong id="calculated-toda">Funda-Dalipe TODA</strong>
+            </div>
+            <div class="fare-row">
+              <span>Applicable Ordinance:</span>
+              <span id="calculated-ordinance">MO No. 2022-18</span>
+            </div>
+          </div>
+          <small id="calculated-note" style="font-size: 11px; color: #c8e6c9; line-height: 1.3;">Standard shared fare (₱20.00 × 1 passenger)</small>
+        </div>
+
+        <button type="button" class="btn-danger-outline" data-open-report>
+          <span>🚨 Report Overcharging / Incident</span>
+        </button>
+      </section>
+
+      <!-- Tab 2: Official Matrix -->
+      <section class="tab-panel" id="tab-matrix">
+        <div class="search-box">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input type="text" id="matrix-search" placeholder="Search barangay, route, or landmark...">
+        </div>
+        <div class="route-cards-list" id="matrix-list"></div>
+      </section>
+
+      <!-- Tab 3: Hotlines & Help -->
+      <section class="tab-panel" id="tab-help">
+        <div class="hotline-card">
+          <div class="hotline-header">
+            <div class="hotline-icon icon-tmo">🚦</div>
+            <div>
+              <strong style="color: #1e3523; font-size: 15px;">San Jose Traffic Management Office (TMO)</strong>
+              <p style="font-size: 11px; color: #64748b;">Franchising, fare disputes &amp; driver compliance</p>
+            </div>
+          </div>
+          <div class="hotline-links">
+            <a href="tel:09178468632" class="btn-hotline">📞 0917-846-8632</a>
+            <a href="tel:0365408000" class="btn-hotline">☎ (036) 540-8000</a>
+          </div>
+        </div>
+
+        <div class="hotline-card">
+          <div class="hotline-header">
+            <div class="hotline-icon icon-pnp">🚔</div>
+            <div>
+              <strong style="color: #0369a1; font-size: 15px;">San Jose Municipal Police Station (PNP)</strong>
+              <p style="font-size: 11px; color: #64748b;">Emergency assistance &amp; commuter security</p>
+            </div>
+          </div>
+          <div class="hotline-links">
+            <a href="tel:09985986288" class="btn-hotline">📞 0998-598-6288</a>
+            <a href="tel:0365409110" class="btn-hotline">☎ (036) 540-9110</a>
+          </div>
+        </div>
+
+        <div class="penalties-card">
+          <h3>⚖️ Municipal Ordinance Overcharging Penalties</h3>
+          <p>Under San Jose de Buenavista Municipal Ordinance No. 2022-18, charging fares beyond the official tariff matrix carries statutory penalties:</p>
+          <ul>
+            <li><strong>1st Offense:</strong> ₱1,000 fine &amp; mandatory driver counseling</li>
+            <li><strong>2nd Offense:</strong> ₱1,500 fine &amp; 30-day suspension of TODA franchise</li>
+            <li><strong>3rd Offense:</strong> ₱2,500 fine &amp; permanent cancellation of MTOP franchise</li>
+          </ul>
+        </div>
+
+        <button type="button" class="btn-danger-outline" data-open-report>
+          <span>Submit Formal Incident Report</span>
+        </button>
+      </section>
+    </main>
+
+    <!-- Report Modal -->
+    <div class="modal-overlay" id="report-modal">
+      <div class="modal-content">
+        <h2 class="modal-title"><span>🚨</span> Report Overcharging</h2>
+        <p style="font-size: 12px; color: #64748b;">Log an incident report with the San Jose Traffic Management Office (TMO).</p>
+        
+        <input type="text" class="modal-input" id="report-body-num" placeholder="Tricycle Body Number (e.g. 1042)" required>
+        <input type="text" class="modal-input" id="report-driver" placeholder="Driver Name (Optional)">
+        <input type="number" class="modal-input" id="report-amount" placeholder="Amount Charged (₱)">
+        <textarea class="modal-input" id="report-details" rows="3" placeholder="Route details, location, and notes..."></textarea>
+        
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="close-report-btn">Cancel</button>
+          <button type="button" class="btn-primary" id="submit-report-btn" style="background: #b91c1c;">Submit Report</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>San Jose TODA Official Municipal Fare Matrix</p>
+      <p style="margin-top: 4px;">Engineered by <a href="https://kylho1231.github.io/portfolio/" target="_blank" rel="noopener">Jhon Kylho Estrabo</a> · St. Anthony’s College</p>
+      <p style="margin-top: 2px; color: #64748b;">San Jose de Buenavista, Antique, Philippines</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme -->
+    <style name="Theme.TODAAPPLICATION" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_brand</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/accent_green</item>
+        <item name="colorSecondaryVariant">@color/accent_green</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:windowBackground">@color/bg_canvas</item>
+        
+        <!-- Modern Bottom Navigation View styling -->
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
+    </style>
+
+    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@color/card_surface</item>
+        <item name="itemIconTint">@color/selector_nav_item</item>
+        <item name="itemTextColor">@color/selector_nav_item</item>
+        <item name="elevation">8dp</item>
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+    <!-- Custom Outlined Dropdown Style with rounded corners -->
+    <style name="Widget.App.ExposedDropdown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxStrokeColor">@color/primary_brand</item>
+        <item name="boxBackgroundColor">@color/input_surface</item>
+        <item name="hintTextColor">@color/text_secondary</item>
+    </style>
+
+    <!-- Custom Modern Chip Style -->
+    <style name="Widget.App.ChoiceChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipCornerRadius">10dp</item>
+        <item name="chipMinHeight">44dp</item>
+        <item name="chipStrokeWidth">1.5dp</item>
+        <item name="chipStrokeColor">@color/selector_chip_stroke</item>
+        <item name="chipBackgroundColor">@color/selector_chip_background</item>
+        <item name="android:textColor">@color/selector_chip_text</item>
+        <item name="checkedIconVisible">true</item>
+        <item name="checkedIconTint">@color/white</item>
+    </style>
+</resources>

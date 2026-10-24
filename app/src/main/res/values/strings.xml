@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">San Jose TODA</string>
+    <string name="app_full_title">San Jose de Buenavista TODA</string>
+    <string name="app_subtitle">Official Municipal Fare Guide &amp; Matrix</string>
+    <string name="ordinance_badge">MO 2022-18 &amp; 2024-01</string>
+    
+    <!-- Tab Titles -->
+    <string name="tab_calculator">Fare Calculator</string>
+    <string name="tab_matrix">Official Matrix</string>
+    <string name="tab_help">Hotlines &amp; Help</string>
+    
+    <!-- Calculator Labels -->
+    <string name="label_origin">Origin (Pick-up)</string>
+    <string name="label_destination">Destination (Drop-off)</string>
+    <string name="label_passenger_type">Passenger Category</string>
+    <string name="label_passengers">Passengers</string>
+    <string name="label_trip_type">Trip Classification</string>
+    <string name="special_trip_label">Special Trip (Pakyaw / Solo)</string>
+    <string name="special_trip_desc">Full sidecar reservation for urgent or solo travel</string>
+    
+    <string name="regular_fare">Regular</string>
+    <string name="student_fare">Student (20% Off)</string>
+    <string name="senior_fare">Senior Citizen</string>
+    <string name="pwd_fare">PWD</string>
+    
+    <string name="estimated_fare_title">Estimated Regulated Fare</string>
+    <string name="peso_symbol">₱</string>
+    <string name="distance_format">Approx. %.1f km</string>
+    
+    <!-- Route search -->
+    <string name="search_route_hint">Search barangay or landmark...</string>
+    
+    <!-- Actions -->
+    <string name="btn_swap">Swap Locations</string>
+    <string name="btn_report_overcharge">Report Overcharging</string>
+    <string name="btn_call_tmo">Call Traffic Office</string>
+    <string name="btn_call_pnp">Call San Jose Police</string>
+    
+    <!-- Dialogs -->
+    <string name="report_title">Report Fare Issue / Overcharging</string>
+    <string name="body_number_hint">Tricycle Body Number (e.g. 1042)</string>
+    <string name="driver_name_hint">Driver Name (Optional)</string>
+    <string name="amount_charged_hint">Amount Charged (₱)</string>
+    <string name="complaint_details_hint">Details of incident / route...</string>
+</resources>

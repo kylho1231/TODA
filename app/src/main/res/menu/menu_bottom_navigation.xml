@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_calculator"
+        android:icon="@drawable/ic_calculator"
+        android:title="@string/tab_calculator" />
+    <item
+        android:id="@+id/nav_matrix"
+        android:icon="@drawable/ic_receipt_long"
+        android:title="@string/tab_matrix" />
+    <item
+        android:id="@+id/nav_help"
+        android:icon="@drawable/ic_support_agent"
+        android:title="@string/tab_help" />
+</menu>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand & Theme Colors -->
+    <color name="primary">#0A2540</color>
+    <color name="primary_dark">#061626</color>
+    <color name="primary_light">#1A3E66</color>
+    <color name="primary_brand">#0066FF</color>
+    <color name="primary_surface">#F1F5F9</color>
+    
+    <!-- Status & Badge Accents -->
+    <color name="accent_green">#059669</color>
+    <color name="accent_green_light">#DCFCE7</color>
+    <color name="accent_green_border">#86EFAC</color>
+    <color name="accent_green_text">#166534</color>
+    
+    <color name="accent_amber">#D97706</color>
+    <color name="accent_amber_light">#FEF3C7</color>
+    
+    <color name="accent_red">#DC2626</color>
+    <color name="accent_red_light">#FEE2E2</color>
+    <color name="accent_red_border">#FCA5A5</color>
+    
+    <color name="badge_ordinance">#EFF6FF</color>
+    <color name="badge_ordinance_border">#BFDBFE</color>
+    <color name="badge_ordinance_text">#1D4ED8</color>
+    
+    <!-- Surfaces & Neutrals -->
+    <color name="bg_canvas">#F8FAFC</color>
+    <color name="card_surface">#FFFFFF</color>
+    <color name="divider">#E2E8F0</color>
+    <color name="divider_subtle">#F1F5F9</color>
+    <color name="input_surface">#F8FAFC</color>
+    
+    <!-- Typography -->
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#475569</color>
+    <color name="text_muted">#94A3B8</color>
+    
+    <!-- Universal -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
